@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.pytest_tmp/
+logs/
+*.pyc
+data/
+organized_screenshots/
+watch_test/
+watch_out/
+sample_images/*.png
+scratch_out/
+sample_images/*.jpg
+sample_images/*.webp
+runtime/
+automation.json
+automation.tmp
