@@ -1,9 +1,108 @@
+<div align="center">
+
 # 📸 Smart Screenshot Organizer
 
-**Primary workflow: automatic screenshot processing in the background.** Configure once, start the quiet
-copy-only service, and optionally install the Windows login task. Take screenshots normally; no Streamlit,
-Scan & Preview, uploads, or per-screenshot approvals are required. Streamlit is an optional management and
-history interface; the original manual CLI remains available for backlogs.
+### From `Screenshot (42).png` to a searchable, organized screenshot library — automatically.
+
+**A privacy-first Windows screenshot organizer powered by OCR, rule-based classification, and background automation.**
+
+![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-Optional%20Dashboard-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-Local%20History-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Tesseract](https://img.shields.io/badge/Tesseract-OCR-5B21B6?style=for-the-badge)
+![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4?style=for-the-badge&logo=windows&logoColor=white)
+
+**🔒 Local processing** · **📋 Copy-only background mode** · **🔎 Searchable history** · **⚡ Zero-click after setup**
+
+</div>
+
+---
+
+## 🌟 The idea
+
+Tired of a Screenshots folder full of files named `Screenshot (42).png`, `Screenshot (43).png`, and `Screenshot (44).png`?
+
+**Smart Screenshot Organizer** watches a screenshot folder, extracts text from each saved image using Tesseract OCR, picks a meaningful title from *visible evidence*, adds the file date, and creates an organized copy in the right category. It also stores a **searchable, local SQLite history**, so you can find older screenshots by their content.
+
+No paid API, cloud upload, or large language model is required. **This is OCR + explainable rules, not generative AI.**
+
+### ✨ Before → After
+
+```text
+📁 Screenshots/                         📁 organized_screenshots/
+├── Screenshot (42).png                 ├── Programming/
+└── Screenshot (43).png                 │   └── Python_Exception_Handling_2026-10-17.png
+                                        └── Education/
+                                            └── Database_Management_Systems_Assignment_02_2026-10-17.png
+```
+
+> **Your originals stay untouched** when you use automatic background mode. The destination receives a new copy, and duplicate content is skipped.
+
+## 🧠 How it works
+
+```mermaid
+flowchart TD
+    A[New screenshot saved in chosen folder] --> B[Background watcher detects a stable file]
+    B --> C[Preprocess image with Pillow]
+    C --> D[Extract text with Tesseract OCR]
+    D --> E[Choose an evidence-based title and date]
+    E --> F[Classify using configurable keyword rules]
+    F --> G{Duplicate content?}
+    G -->|Yes| H[Skip safely]
+    G -->|No| I[Copy to category folder without overwriting]
+    I --> J[Save searchable SQLite history]
+```
+
+### 🧩 Technology stack
+
+| Layer | Technology | Job |
+|---|---|---|
+| Language | Python | Application logic and automation |
+| OCR | Tesseract + pytesseract | Extract visible screenshot text |
+| Image processing | Pillow | Resize, enhance, and prepare images for OCR |
+| File monitoring | watchdog | Detect new screenshot files |
+| Storage | SQLite | Local processing history and search |
+| Dashboard | Streamlit | Optional preview, history, settings, and search |
+| Automation | PowerShell + Windows Task Scheduler | Quiet startup and optional launch on sign-in |
+| Testing | pytest | Automated unit and integration checks |
+
+## 📷 Project showcase
+
+*Add your own screenshots later: a before/after folder view, the optional Streamlit dashboard, background status, and the History & Search tab. Avoid publishing personal screenshots or OCR text.*
+
+| View | What to show |
+|---|---|
+| 🗂️ Before & after | Original Screenshots folder beside categorized output |
+| 🖥️ Dashboard | Optional Streamlit management interface |
+| 🔎 Search | A query finding a screenshot using its OCR text |
+| ⚙️ Background status | `background.py status` showing active copy mode |
+
+## ⚡ Quick start — automatic screenshot organization
+
+After installing **Python dependencies and Tesseract** (see [Installation](#-installation-windows-vs-code-terminal)), run these commands **from the project folder**:
+
+```powershell
+.\.venv\Scripts\python.exe background.py configure
+.\scripts\Start-Automation.ps1
+.\.venv\Scripts\python.exe background.py status
+```
+
+✅ Save new screenshots to the configured folder. The organizer processes them in the background — **no browser, dashboard, or manual approval required**. The initial run leaves pre-existing screenshots alone unless you choose `--process-existing`.
+
+For control over each file, use [manual preview and organization](#-manual-processing-and-sample-quick-start) or the [optional Streamlit dashboard](#%EF%B8%8F-optional-dashboard).
+
+### 🧭 Contents
+
+- [Automatic background processing](#-set-up-zero-click-background-processing)
+- [Features](#-features)
+- [Safety guarantees](#-safety-guarantees)
+- [Project structure](#%EF%B8%8F-project-structure)
+- [Requirements and installation](#-installation-windows-vs-code-terminal)
+- [Manual CLI and dashboard](#-manual-processing-and-sample-quick-start)
+- [Privacy, tests, and troubleshooting](#%EF%B8%8F-database-and-privacy)
+- [Known limitations](#%EF%B8%8F-known-limitations)
+
+---
 
 ## 🔄 Set up zero-click background processing
 
@@ -112,16 +211,6 @@ copy, and SQLite history. Low-confidence OCR uses a neutral filename. Check thes
 sent to a service. Keep the existing privacy cautions below, including the OCR library's OS temporary files.
 The optional dashboard shows background status, supports saving source/output configuration while stopped,
 and retains history/search and manual processing. Its separate watcher controls are optional.
-
-
-OCR-based, content-aware screenshot automation for Windows. It reads the text inside your screenshots, builds a
-**descriptive filename from what the screenshot actually says**, adds the capture date, sorts the file into a category
-folder, and keeps a searchable local history. Screenshot processing runs locally: no paid APIs, no LLM, no internet needed after installation.
-
-```text
-Screenshot (42).png   ->   Programming/Python_Exception_Handling_2026-10-17.png
-Screenshot (43).png   ->   Education/Database_Management_Systems_Assignment_02_2026-10-17.png
-```
 
 ## ✨ Features
 
