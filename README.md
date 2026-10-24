@@ -17,7 +17,43 @@
 </div>
 
 ---
+## 🤝 Contributions Welcome!
 
+Smart Screenshot Organizer is open-source and welcomes contributions
+from developers of all experience levels!
+
+Whether you're a beginner exploring your first GitHub contribution
+or an experienced Python developer, we'd love your help.
+
+### 🚀 Start Contributing
+
+- 🐛 [Report a Bug](https://github.com/Iqranawaz-debug/Screenshot_Organizer/issues/new/choose)
+- 💡 [Suggest a Feature](https://github.com/Iqranawaz-debug/Screenshot_Organizer/issues/new/choose)
+- 🌱 [Explore Good First Issues](https://github.com/Iqranawaz-debug/Screenshot_Organizer/labels/good%20first%20issue)
+- 🛠️ [Find Help Wanted Issues](https://github.com/Iqranawaz-debug/Screenshot_Organizer/labels/help%20wanted)
+- 📖 [Read Contribution Guidelines](CONTRIBUTING.md)
+
+### ⭐ Featured Contribution Opportunities
+
+| Issue | Area | Level |
+|---|---|---|
+| [#2 - Improve Windows Installation Documentation](https://github.com/Iqranawaz-debug/Screenshot_Organizer/issues/2) | Documentation | Beginner |
+| [#3 - Improve Screenshot Categorization Tests](https://github.com/Iqranawaz-debug/Screenshot_Organizer/issues/3) | Python Testing | Beginner-Friendly |
+
+**How to contribute:**
+
+1. Choose an open issue.
+2. Comment that you'd like to work on it.
+3. Follow the instructions in `CONTRIBUTING.md`.
+4. Fork the repository and make your changes.
+5. Submit a pull request for maintainer review.
+
+All contributions are reviewed to preserve the project's
+privacy, security, and existing functionality.
+
+**Maintained by [Iqra Nawaz](https://github.com/Iqranawaz-debug).**
+
+---
 ## 🌟 The idea
 
 Tired of a Screenshots folder full of files named `Screenshot (42).png`, `Screenshot (43).png`, and `Screenshot (44).png`?
