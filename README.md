@@ -319,6 +319,19 @@ If you install elsewhere, set `tesseract_cmd` in `config.py`.
 
 **2. Get the project and create a virtual environment.**
 
+Choose a local folder you can write to, outside your OneDrive folder, such as
+`C:\dev\smart_screenshot_organizer`. Create the parent folder if needed, then clone
+or extract the project there. In VS Code, open that project folder and its terminal.
+Replace `path\to\smart_screenshot_organizer` below with your actual project path.
+
+**Check the location first:** open the project folder in File Explorer and click
+the address bar to see its full path. Typical OneDrive paths include
+`C:\Users\<your-name>\OneDrive\...` or `OneDrive - <organization>\...`.
+Desktop and Documents can also be backed up by OneDrive, so check their actual
+location rather than relying on the folder name. OneDrive cloud, sync-arrow or
+green-check status icons are another clue; a green check means local availability,
+not that the folder is outside OneDrive.
+
 ```powershell
 cd path\to\smart_screenshot_organizer
 python -m venv .venv
@@ -328,8 +341,15 @@ python -m pip install -r requirements.txt
 
 If PowerShell blocks activation: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, then try again.
 
-> 💡 Keep the project **outside OneDrive-synced folders** (for example `C:\dev\smart_screenshot_organizer`).
-> OneDrive can lock files while syncing, which causes odd permission errors.
+> 💡 Keep the **project files and virtual environment outside OneDrive-synced folders**.
+> The app writes local database, log and runtime files while it runs. Syncing adds
+> another process accessing those files, and online-only files need downloading
+> before use. Keeping the project local avoids these extra sync and availability
+> problems; it does not fix every permission or database-lock error.
+> See Microsoft's [OneDrive file-in-use guidance](https://support.microsoft.com/en-us/onedrive/troubleshoot-onedrive-error-this-file-can-t-be-synced)
+> and [status icon explanations](https://support.microsoft.com/en-gb/onedrive/what-do-the-onedrive-icons-mean).
+> This recommendation concerns the installation folder; screenshot-folder
+> detection still honors Windows/OneDrive redirection as described above.
 
 **3. Verify.**
 
